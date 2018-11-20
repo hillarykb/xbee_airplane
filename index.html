@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- www.phpied.com/conditional-comments-block-downloads/ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta http-eqiv="X-UA-Comapatiable" content="IE-edge, chrome = 1">
+
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+
+    <!-- Load jQuery and jQuery UI -->
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--load css from 960 grid system-->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/960_24_col.css">
+    <link rel="stylesheet" href="css/text.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!--load javaScript from library-->
+    <script src="js/scripts.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+
+
+    <title> Xbee </title>
+    <style>
+        body {
+            font: 12px/20px "Helvetica neue", Helvetica, Arial, sans-serif;
+            font-weight: normal;
+            overflow: hidden;
+            overflow-y: auto;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header class="container_24"></header>
+
+    <div id="main" class="grid_16">
+        <p>
+            Acelerometro:
+            <input type="text" id="distance" /> X
+            <input type="text" id="distance1" /> Y
+        </p>
+
+        <p>
+
+            Opções:
+            <div class='flex-container'>
+                <button id="on" class="waves-effect waves-light btn" onclick="clickButton(this.id)">On Branco</button>
+                <button id="off" class="waves-effect waves-light btn" onclick="clickButton(this.id)">Off Branco</button>
+
+            </div>
+            <div class='flex-container'>
+                <button id="OnHelice" class="waves-effect waves-light btn" onclick="clickButton(this.id)">off helice</button>
+                <button id="OffHelice" class="waves-effect waves-light btn" onclick="clickButton(this.id)">on helice</button>
+            </div>
+            <div class='flex-container'>
+                <button id="LedRedOn" class="waves-effect waves-light btn" onclick="clickButton(this.id)">On Vermelho</button>
+                <button id="LedRedOff" class="waves-effect waves-light btn" onclick="clickButton(this.id)">Off Vermelho</button>
+            </div>
+            <div class='flex-container'>
+                <button id="upTrem" class="waves-effect waves-light btn" onclick="clickButton(this.id)">
+                    <i class="material-icons large">keyboard_arrow_up</i>
+                </button>
+                <button id="DownTrem" class="waves-effect waves-light btn" onclick="clickButton(this.id)">
+                    <i class="material-icons large">keyboard_arrow_down</i>
+                </button>
+                <button id="PraTras" class="waves-effect waves-light btn" onclick="clickButton(this.id)">
+                    <i class="material-icons large">keyboard_arrow_left</i>
+                </button>
+                <button id="PraFrente" class="waves-effect waves-light btn" onclick="clickButton(this.id)">
+                    <i class="material-icons large">keyboard_arrow_right</i>
+                </button>
+                <button id="buzzer" class="waves-effect waves-light btn" onclick="clickButton(this.id)">buzzer</button>
+            </div>
+            <!--
+            <button id="right" onclick="clickButton(this.id)">Right</button>
+            <br>
+            <button id="back" onclick="clickButton(this.id)">Back</button> -->
+
+        </p>
+        <!-- <p>
+            Power
+            <br>
+            <input id="slideValue" type="number" min="0" max="244" />
+            <div id="slider"></div>
+            <br>
+        </p> -->
+    </div>
+    <!--main-->
+
+</body>
+
+<html>
