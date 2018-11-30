@@ -128,6 +128,26 @@ $(function() {
     data: 'x', // Can either be a string or byte array.
   };
 
+  const frame_objDireito = {
+    type: 0x10, // xbee_api.constants.FRAME_TYPE.ZIGBEE_TRANSMIT_REQUEST
+    id: 0x01, // Optional, nextFrameId() is called per default
+    destination64: '0013a20040d6a87d',
+    destination16: 'fffe', // Optional, "fffe" is default
+    broadcastRadius: 0x00, // Optional, 0x00 is default
+    options: 0x00, // Optional, 0x00 is default
+    data: 'y', // Can either be a string or byte array.
+  };
+
+  const frame_objEsquerdo = {
+    type: 0x10, // xbee_api.constants.FRAME_TYPE.ZIGBEE_TRANSMIT_REQUEST
+    id: 0x01, // Optional, nextFrameId() is called per default
+    destination64: '0013a20040d6a87d',
+    destination16: 'fffe', // Optional, "fffe" is default
+    broadcastRadius: 0x00, // Optional, 0x00 is default
+    options: 0x00, // Optional, 0x00 is default
+    data: 'z', // Can either be a string or byte array.
+  };
+
   $('#on').click(function() {
     sendToServer(frame_objAcendeBranco);
   });
@@ -160,6 +180,12 @@ $(function() {
   });
   $('#buzzer').click(function() {
     sendToServer(frame_objBuzzer);
+  });
+  $('#ladoEsquerdo').click(function() {
+    sendToServer(frame_objEsquerdo);
+  });
+  $('#ladoDireito').click(function() {
+    sendToServer(frame_objDireito);
   });
 });
 

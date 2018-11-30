@@ -16,7 +16,7 @@ var serialPort = new SerialPort('COM12', {
   baudRate: 9600,
   parser: xbeeAPI.parseRaw(1000),
 });
-var serialPortArd = new SerialPort('COM14', {
+var serialPortArd = new SerialPort('COM11', {
   baudRate: 9600,
   parser: xbeeAPI.parseRaw(1000),
 });
@@ -24,7 +24,7 @@ var serialPortArd = new SerialPort('COM14', {
 var parser = new Readline('\n');
 serialPortArd.pipe(parser);
 parser.on('data', function(data) {
-  // console.log('data received: ' + JSON.stringify(data));
+  console.log('data received: ' + JSON.stringify(data));
 
   let t = JSON.stringify(data)
     .replace(/([A-Z{":,}a-z])/g, '')

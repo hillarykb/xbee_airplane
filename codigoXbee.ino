@@ -13,11 +13,13 @@ Servo myservo;
 
 Servo myservo1;
 
+Servo myservo2;
+
 int pos = 0;
 int pos1 = 0;
 
 //Leds branco
-//int PINA = 4;
+int PINA = 4;
 int PINBR = 12;
 
 //Leds Vermelho
@@ -58,6 +60,7 @@ void setup()
 {
   myservo.attach(9);
   myservo1.attach(10);
+  myservo2.attach(5);
   Wire.begin();
   Wire.beginTransmission(MPU);
   Wire.write(0x6B);
@@ -72,8 +75,10 @@ void setup()
   pinMode(11, OUTPUT);
   Serial.begin(9600);
   xb.begin(9600);
-  myservo1.write(10);
+  analogWrite(11, 255);
 
+  myservo1.write(90);
+  myservo2.write(90);
 }
 
 void lerAcelerometro()
@@ -105,38 +110,38 @@ void populateJSON()
 
 void loop()
 {
-  xbee.setSerial(Serial);
-  char  dmy[8];
+  //  xbee.setSerial(Serial);
+  //  char  dmy[8];
   lerAcelerometro();
   populateJSON();
 
   //object.prettyPrintTo(Serial);
   object.printTo(Serial);
   Serial.print("\n");
-  
+
   if (Serial.available() > 0)
   {
     valores = Serial.read();
-    //xbee.setSerial(Serial);
+    xbee.setSerial(Serial);
 
     switch (valores)
     {
-      case '0': //brancoOn
-        digitalWrite(4, LOW);
+      case '0': //vermelhoOff
+        digitalWrite(PINA, LOW);
         digitalWrite(PINBR, LOW);
         break;
 
-      case '1': //brancoOff
-        digitalWrite(4, HIGH);
+      case '1': //vermelhoOn
+        digitalWrite(PINA, HIGH);
         digitalWrite(PINBR, HIGH);
         break;
 
-      case '2': //vermelhoOn
+      case '2': //brancoOff
         digitalWrite(PINVB, LOW);
         digitalWrite(PINVA, LOW);
         break;
 
-      case '3': //vermelhoOff
+      case '3': //brancoOn
         digitalWrite(PINVA, HIGH);
         digitalWrite(PINVB, HIGH);
         break;
@@ -147,8 +152,8 @@ void loop()
         noTone(8);
         break;
 
-      case '5': //pousoSobe
-        for (pos = 0; pos <= 180; pos += 1)
+      case '5': //pousoDesce
+        for (pos = 90; pos <= 180; pos += 1)
         {
           // in steps of 1 degree
           myservo.write(pos);
@@ -156,8 +161,8 @@ void loop()
         }
         break;
 
-      case '6': //pousoDesce
-        for (pos = 10; pos <= 11; pos += 1)
+      case '6': //pousoSobe
+        for (pos = 180; pos >= 90; pos -= 1)
         {
           // in steps of 1 degree
           myservo.write(pos);
@@ -173,16 +178,51 @@ void loop()
         analogWrite(11, 255);
         break;
 
-      case '9': //demonio pra frente
-        posicao = posicao + 5;
-        myservo1.write(posicao);
+      case '9': //para frente
+
+        for (pos = 110; pos >= 70; pos -= 1)
+        { // goes from 180 degrees to 0 degrees
+          myservo1.write(pos);              // tell servo to go to position in variable 'pos'
+          delay(5);                       // waits 15ms for the servo to reach the position
+        }
+        // posicao = posicao + 5;
+        // myservo1.write(posicao);
         break;
 
-      case 'x': //demonio pra tras
-        posicao = posicao - 5;
-        myservo1.write(posicao);
+      case 'x': //para tras
+
+        for (pos = 70; pos <= 110; pos += 1)
+        { // goes from 0 degrees to 180 degrees
+          // in steps of 1 degree
+          myservo1.write(pos);              // tell servo to go to position in variable 'pos'
+          delay(5);                       // waits 15ms for the servo to reach the position
+        }
+        // posicao = posicao - 5;
+        // myservo1.write(posicao);
+        break;
+
+      case 'y': // lateral esquerda
+
+        for (pos = 70; pos <= 110; pos += 1)
+          // goes from 0 degrees to 180 degrees
+          // in steps of 1 degree
+          myservo2.write(pos);              // tell servo to go to position in variable 'pos'
+        delay(5);                       // waits 15ms for the servo to reach the position
+        //posicao = posicao + 5;
+        break;
+      //myservo2.write(posicao);
+
+      case 'z': // lateral direita
+
+        for (pos = 110; pos >= 70; pos -= 1)
+          // goes from 180 degrees to 0 degrees
+          myservo2.write(pos);              // tell servo to go to position in variable 'pos'
+        delay(5);                       // waits 15ms for the servo to reach the position
+        //posicao = posicao - 5;
+        //myservo2.write(posicao);
         break;
 
     }
   }
 }
+

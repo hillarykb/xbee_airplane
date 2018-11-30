@@ -189,6 +189,10 @@ body {
   flex-wrap: wrap;
 }
 
+.flex-container.lado {
+  justify-content: flex-end;
+}
+
 .flex-container > button {
   width: 100px;
   height: 100px;
